@@ -17,7 +17,7 @@ def create_transaction(t_type, amount, description):
     transaction = Transaction(t_id, t_type, amount, date_str, description)
 
     year_month = now.strftime("%Y-%m")
-    storage.save_transaction(transaction, year_month)
+    storage.save_transaction(transaction.to_dict(), year_month)
     return transaction
 
 def get_transactions(date):
