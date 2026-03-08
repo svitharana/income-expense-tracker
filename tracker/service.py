@@ -20,7 +20,19 @@ def create_transaction(t_type, amount, description):
     storage.save_transaction(transaction.to_dict(), year_month)
     return transaction
 
-def get_transactions(date):
+
+def get_monthly_summary(transactions):
+
+    incomes = sum(t.amount for t in transactions if t.type == "income")
+    expenses = sum(t.amount for t in transactions if t.type == "expense")
+
+    balance = incomes - expenses
+
+    return incomes, expenses, balance
+
+
+def get_monthly_report(date):
     transactions_dict = storage.get_transactions(date)
     transactions = [Transaction.from_dict(t) for t in transactions_dict]
-    return transactions
+    incomes, expenses, balance = get_monthly_summary(transactions)
+    return transactions, incomes, expenses, balance
