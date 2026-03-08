@@ -54,7 +54,7 @@ def main():
             if not transactions:
                 print(f"\nNo transactions found for the given month.")
             else:
-                print(f"\nTransactions for {month}:")
+                print(f"\nTransactions for {date}:")
                 print(f"{'ID':<18} | {'Type':<8} | {'Amount':<10} | {'Date':<10} | {'Description'}")
                 print("-" * 80)
                 for t in transactions:
