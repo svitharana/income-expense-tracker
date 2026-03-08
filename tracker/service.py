@@ -31,8 +31,7 @@ def get_monthly_summary(transactions):
     return incomes, expenses, balance
 
 
-def get_monthly_report(date):
+def get_transactions(date):
     transactions_dict = storage.get_transactions(date)
     transactions = [Transaction.from_dict(t) for t in transactions_dict]
-    incomes, expenses, balance = get_monthly_summary(transactions)
-    return transactions, incomes, expenses, balance
+    return transactions
