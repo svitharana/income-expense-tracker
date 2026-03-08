@@ -48,17 +48,23 @@ def main():
             print(f"ID: {transaction.id}, Type: {transaction.type}, Amount: {transaction.amount}, Date: {transaction.date}, Description: {transaction.description}")
 
         elif choice == "2":
-            date = get_valid_date()
-            transactions = service.get_transactions(date)
-            
+            month = get_valid_date()
+            transactions, total_income, total_expense, balance = service.get_monthly_report(month)
+
             if not transactions:
-                print(f"\nNo transactions found for the given month.")
+                print(f"\nNo transactions found for {month}.")
             else:
-                print(f"\nTransactions for {date}:")
+                print(f"\nTransactions for {month}:")
                 print(f"{'ID':<18} | {'Type':<8} | {'Amount':<10} | {'Date':<10} | {'Description'}")
                 print("-" * 80)
                 for t in transactions:
                     print(f"{t.id:<18} | {t.type:<8} | {t.amount:<10.2f} | {t.date:<10} | {t.description}")
+
+                print("-" * 80)
+                print(f"Total Income:  {total_income:>10.2f}")
+                print(f"Total Expense: {total_expense:>10.2f}")
+                print(f"Balance:       {balance:>10.2f}")
+
 
         elif choice == "3":
             print("Exiting tracker. Goodbye!")
